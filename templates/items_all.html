@@ -1,0 +1,73 @@
+{% extends "page_frame.html" %}
+
+{% block title %}itemlist{% endblock title %}
+
+{% block head %}All available items{% endblock head %}
+
+{% block page_content %}
+   
+{% if items %}
+
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<table class="table table-condensed table-responsive">
+			<thead>
+				<tr>
+					<th style="width: 50%;">Name</th>
+					<th style="width: 15%;">Price<span class="glyphicon glyphicon-euro" aria-hidden="true"></span></th>
+					<th style="width: 15%;">Shop</th>
+					<th style="width: 12%;">Quantity</th>
+					<th style="width: 8%;"></th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for item in items %}
+				<tr>
+					<td><a href="/{{ item.key.id() }}">{{ item.item_name }}</a></td>
+					<td>{{ item.item_price }}</td>
+					<td>{{ item.item_shop }}</td>
+					<td>
+						{% if not item.item_select %}
+							<form method="post" action="/{{ item.key.id() }}/plus" target="hiddenFrame">
+						{% else %}
+							<form method="post" action="/{{ item.key.id() }}/minus" target="hiddenFrame">
+						{% endif %}
+						<div class="center" style="width: 125px">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="{{ item.key.id() }}">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+							</span>
+								<input type="text" name="{{ item.key.id() }}" class="form-control input-number" value="{{ item.item_qty }}">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="{{ item.key.id() }}">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+						</div>
+						</div>
+					</td>
+					<td>
+						{% if not item.item_select %}			
+							<button onclick="location.reload()" type="submit" class="btn btn-primary btn-sm">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							</button>
+						</form>
+						{% else %}
+							<button onclick="location.reload()" type="submit" class="btn btn-danger btn-sm">
+							<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+							</button>
+						</form>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	</div>
+{% endif %}
+{% endblock page_content %}

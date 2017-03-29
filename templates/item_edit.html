@@ -1,0 +1,40 @@
+{% extends "page_frame.html" %}
+
+{% block title %}Edit item{% endblock title %}
+
+{% block page_content %}
+
+
+<div class="panel panel-primary">
+	<div class="panel-body">
+		    <h2>Edit item</h2>
+			<table class="table table-condensed table-responsive">
+		        <thead>
+		          <tr>
+					<th style="width: 40%;">Name</th>
+					<th style="width: 15%;">Price<span class="glyphicon glyphicon-euro" aria-hidden="true"></span></th>
+					<th style="width: 15%;">Shop</th>
+					<th style="width: 15%;">EAN</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+					<form method="post" action="/{{ items.key.id() }}/edit">
+		            	<tr>
+			                <td><input name="item_name" value="{{ items.item_name }}"></td>
+			                <td><input name="item_price" type="number" step="any" value="{{ items.item_price }}"></td>
+			                <td><input name="item_shop" value="{{ items.item_shop }}"></td>
+			                <td><input name="item_ean" type="number" value="{{ items.item_ean }}"></td>
+			            </tr>
+			            <tr>
+			                <td colspan="4">
+		                    	<button type="submit" class="btn btn-primary btn-sm">
+		                        	<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save
+		                    	</button>
+			                </td>
+		    	        </tr>
+					</form>
+		        </tbody>
+		        </table>    
+	</div>
+</div>
+{% endblock page_content %}

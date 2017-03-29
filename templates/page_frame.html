@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Bootstrap CSS -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/css/mystyles.css">
+	<script src="css/PlusMinus.js"></script>
+	<title>{% block title %} {% endblock title %}</title>
+</head>
+<body>
+	<nav class="navbar-fixed-top">
+		<div class="container block-center">
+			<div class="row">
+				<div class="col-xs-8 col-md-8 col-lg-8 text-left">
+					<h1>{% block head %} {% endblock head %}</h1>
+				</div>
+				<div class="col-xs-2 col-md-2 col-lg-2 text-right">
+					<form method="post" action="/">
+						<a href="/"><button type="button" class="btn btn-primary navbar-btn btn-lg">Home</button></a>
+					</form>
+				</div>
+				<div class="col-xs-2 col-md-2 col-lg-2 text-right">
+					<form method="post" action="/selected">
+						<a href="/selected">
+							<button class="btn btn-primary navbar-btn btn-lg" type="button">
+								<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+								<span class="badge">{{ selected }}</span>
+							</button>
+						</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container text-center" style="margin-top: 100px">
+		{% block page_content %}
+		{% endblock page_content %}
+	</div>
+
+
+	<nav class="navbar-fixed-bottom">
+		<div class="container text-center">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1">Add items</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+				<div class="panel-body">
+				<table class="table table-condensed table-responsive">
+					<thead>
+					<tbody>
+					<form method="post" action="/add">
+					<tr>
+						<th style="width: 40%;">Name</th>
+						<td style="width: 40%;"><input name="item_name"></td>
+					</tr>
+					<tr>
+						<th>Price</th>
+						<td><input name="item_price" type="number" step="any"></td>
+					</tr>
+					<tr>
+						<th>Shop</th>
+						<td>
+							<select name="item_shop" style="width: 50%">
+								<option value="Hofer" selected>Hofer</option>
+								<option value="Billa">Billa</option>
+								<option value="Spar">Spar</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>EAN</th>
+						<td><input name="item_ean" type="number" value="0"></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<button type="submit" class="btn btn-primary btn-lg">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add item
+							</button>
+						</td>
+					</tr>
+					</form>
+					</tbody>
+					</thead>
+				</table>
+				</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+.container {
+	margin: 10px auto;
+	color: white;
+}
+
+.navbar-fixed-top {
+	background-color: black;
+	border-style: solid;
+	border-bottom-color: white;
+}
+
+.table-hover > tbody > tr:hover {
+ 	background-color: #ffffff;
+	color: #000000;
+}
+
+input, select {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+th {
+	text-align: center;
+	color: white;
+	font-size: 22px;
+	vertical-align: middle;
+}
+
+td {
+	text-align: center;
+	color: white;
+	font-size: 22px;
+	vertical-align: middle;
+}
+
+.panel-body {
+	background-color: black;
+    color: #000000;
+}
+
+@media only screen and (min-width: 801px) {
+	body {
+		background-image: url("back_L.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;
+		background-color: black;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	body{
+		background-image: url("back_mobile.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-color: black;
+	}
+}

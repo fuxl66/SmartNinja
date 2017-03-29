@@ -1,0 +1,48 @@
+{% extends "page_frame.html" %}
+
+{% block title %}shoppingcart{% endblock title %}
+
+{% block head %}Your shopping cart{% endblock head %}
+
+{% block page_content %}
+
+    {% if items %}
+		<div class="panel panel-primary">
+			<div class="panel-body">
+			  <table class="table table-condensed table-responsive">
+			    <thead>
+			      <tr>
+			        <th style="width: 40%;">Name</th>
+			        <th style="width: 15%;">Shop</th>
+			        <th style="width: 15%;">Price</th>
+			        <th style="width: 15%;">Quantity</th>
+			        <th style="width: 15%;">Total Price</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			  	    {% for item in items %}
+					<tr>
+				        <td><a href="/{{ item.key.id() }}">{{ item.item_name }}</a></td>
+				        <td>{{ item.item_shop }}</td>
+				        <td>{{ item.item_price }}</td>
+				        <td>{{ item.item_qty }}</td>
+				        <td>{{ item.item_totalprice }}</td>
+					</tr>
+			    	{% endfor %}
+					<tr>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td>Sum:</td>
+				        <td>{{ total }}</td>
+					</tr>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	{% else %}
+		<div class="container">
+			<h2>!!! No items selected !!!</h2>
+		</div>
+	{% endif %}
+{% endblock page_content %}
